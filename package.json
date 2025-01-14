@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cloudinary": "^2.5.1",
     "dotenv": "^16.4.7",
     "expres": "^0.0.5",
     "express": "^4.21.2",
