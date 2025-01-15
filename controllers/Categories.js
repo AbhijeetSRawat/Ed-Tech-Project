@@ -1,6 +1,6 @@
-const Tag=require("../models/Tag");
+const Category=require("../models/Category");
 
-exports.createTag=async (req,res)=>{
+exports.createCategory=async (req,res)=>{
     try{
         //fetch data from the body
         const {name,description}=req.body;
@@ -12,14 +12,14 @@ exports.createTag=async (req,res)=>{
             });
         }
         //create the tag
-        const tagDetails= await Tag.create({
+        const categoryDetails= await Category.create({
                                             name:name,
                                             description:description,
         });
 
         return res.status(200).json({
             success:true,
-            message:"Tag created successfully!"
+            message:"Category created successfully!"
         });
         
     } 
@@ -32,14 +32,14 @@ exports.createTag=async (req,res)=>{
 }
 
 
-exports.showAllTags = async (req,res)=>{
+exports.showAllCategories = async (req,res)=>{
     try{
-        const allTags=await Tag.find({},{name:true,
+        const allCategories=await Category.find({},{name:true,
                                         description:true});
 
         res.status(200).json({
             success:true,
-            message:"All tags are fetched successfully",
+            message:"All categories are fetched successfully",
             allTags,
         })
     }
