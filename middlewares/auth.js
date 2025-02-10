@@ -2,11 +2,10 @@ const jwt=require("jsonwebtoken");
 require("dotenv").config();
 const User=require("../models/User");
 
-exports.auth=async (req,res)=>{
+exports.auth=async (req,res,next)=>{
     try{
         //fetch token from the header or cookies or body
-        const token=req.header("Authorisation").replace("Bearer ","") || req.cookies.token || req.body.token;
-
+        const token=req.header("Authorization").replace("Bearer ","") || req.cookies.token || req.body.token;
         //check if the token is missing or not
         if(!token){
             return res.status(401).json({
@@ -39,9 +38,9 @@ exports.auth=async (req,res)=>{
     }
 }
 
-exports.isStudent = async(req,res)=>{
+exports.isStudent = async(req,res,next)=>{
     try{
-        if(user.req.accountType !== "Student"){
+        if(req.user.accountType !== "Student"){
             return res.status(401).json({
                 success:false,
                 message:"This is a protected route for Students only",
@@ -57,9 +56,9 @@ exports.isStudent = async(req,res)=>{
     }
 }
 
-exports.isInstructor = async(req,res)=>{
+exports.isInstructor = async(req,res,next)=>{
     try{
-        if(user.req.accountType !== "Instructor"){
+        if(req.user.accountType !== "Instructor"){
             return res.status(401).json({
                 success:false,
                 message:"This is a protected route for Instructors only",
@@ -75,9 +74,9 @@ exports.isInstructor = async(req,res)=>{
     }
 }
 
-exports.isAdmin = async(req,res)=>{
+exports.isAdmin = async(req,res,next)=>{
     try{
-        if(user.req.accountType !== "Admin"){
+        if(req.user.accountType !== "Admin"){
             return res.status(401).json({
                 success:false,
                 message:"This is a protected route for Admins only",

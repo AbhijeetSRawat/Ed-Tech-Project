@@ -1,7 +1,7 @@
 const Course=require("../models/Course");
 const Category=require("../models/Category");
 const User=require("../models/User");
-const {uploadImageToCloudianry} = require("../utils/imageUploader");
+const {uploadImageToCloudinary} = require("../utils/imageUploader");
 const { populate } = require("dotenv");
 require("dotenv").config();
 
@@ -11,7 +11,7 @@ exports.createCourse = async(req,res)=>{
         const {courseName, courseDescription, whatYouWillLearn, price, category} = req.body;
 
         const thumbnail=req.files.thumbnailImage;
-
+        
         if(!courseName || !courseDescription || !whatYouWillLearn || !price || !category || !thumbnail){
             return res.status(400).json({
                 success:false,
@@ -31,7 +31,7 @@ exports.createCourse = async(req,res)=>{
             })
         }
 
-        const categoryDetails = await Category.findById(tag);
+        const categoryDetails = await Category.findById(category);
         if(!categoryDetails){
             res.status(404).json({
                 success:false,
@@ -40,7 +40,7 @@ exports.createCourse = async(req,res)=>{
         }
 
         //upload image to cloudinary
-        const thumbnailImage = await uploadImageToCloudianry(thumbnail,process.env.FOLDER_NAME);
+        const thumbnailImage = await uploadImageToCloudinary(thumbnail,process.env.FOLDER_NAME);
 
         //add new course to db
         const newCourse=await Course.create({
@@ -64,7 +64,7 @@ exports.createCourse = async(req,res)=>{
             {new:true},
         )
         
-        //add new couse to the tag
+        //add new couse to the category
         await Category.findByIdAndUpdate(
             {_id:categoryDetails._id},
             {

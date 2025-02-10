@@ -65,6 +65,7 @@ exports.updateSection = async(req,res)=>{
                                                         {sectionName},
                                                         {new:true}
         );
+        
 
         return res.status(200).json({
             success:true,
@@ -83,7 +84,7 @@ exports.updateSection = async(req,res)=>{
 exports.deleteSection = async (req,res)=>{
     try{
         //get data from the body
-        const {sectionId}=req.params;
+        const {sectionId}=req.body;
         const {courseId}=req.body; // this may be incorrect need to be corrected
 
         //remove the section from the course
@@ -97,6 +98,7 @@ exports.deleteSection = async (req,res)=>{
                                                                     {new:true}
         );
         
+        console.log(updatedCourseDetails)
         //delete the section
         await Section.findByIdAndDelete(sectionId);
 

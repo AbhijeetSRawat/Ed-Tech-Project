@@ -41,10 +41,11 @@ exports.sendotp=async(req,res)=>{
             result =await OTP.findOne({otp:otp});
         }
 
-        const otpPayload={email,otp};
+        const createdAt = Date.now();
+        const otpPayload={email,createdAt,otp};
 
         //save otp to your db
-        const otpBody=await otp.create(otpPayload);
+        const otpBody=await OTP.create(otpPayload);
         console.log(otpBody);
 
         res.status(200).json({
@@ -105,10 +106,10 @@ exports.signup=async (req,res)=>{
                 message:"Otp not found"
             });
         }
-        else if(otp !== recentOTP.otp){
+        else if(otp !== recentOTP[0].otp.toString()){
             return res.status(400).json({
                 success:false,
-                message:"Otp not found"
+                message:"Otp did not match"
             });
         }
         //hash the password and create a profile details
@@ -122,6 +123,7 @@ exports.signup=async (req,res)=>{
         });
         //create entry in db
 
+        console.log("account type is : ",accountType)
         const user = await User.create({
             firstName,
             lastName,

@@ -40,7 +40,7 @@ exports.showAllCategories = async (req,res)=>{
         res.status(200).json({
             success:true,
             message:"All categories are fetched successfully",
-            allTags,
+            allCategories,
         })
     }
     catch(error){
