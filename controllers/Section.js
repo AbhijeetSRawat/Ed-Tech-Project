@@ -80,7 +80,7 @@ exports.updateSection = async(req,res)=>{
 }
 
 // to delete the section
-exports.delelteSection = async (req,res)=>{
+exports.deleteSection = async (req,res)=>{
     try{
         //get data from the body
         const {sectionId}=req.params;

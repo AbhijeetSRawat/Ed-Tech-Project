@@ -7,7 +7,7 @@ const jwt = require ("jsonwebtoken");
 require("dotenv").config();
 
 //send otp contorller
-exports.sendOTP=async(req,res)=>{
+exports.sendotp=async(req,res)=>{
     try{
         //fetch data from bidy
         const {email}=req.body;
@@ -63,7 +63,7 @@ exports.sendOTP=async(req,res)=>{
     }
 }
 
-exports.signUp=async (req,res)=>{
+exports.signup=async (req,res)=>{
     try{
         //fetch data from body
         const{

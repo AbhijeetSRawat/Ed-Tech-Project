@@ -98,7 +98,7 @@ exports.createPayment = async (req,res)=>{
 
 
 //verify signature of the payment
-exports.verifySignautre = async(req,res)=>{
+exports.verifySignature = async(req,res)=>{
     try{
         //webhook and signature fetch
         const webhookSecret = "12345678";
