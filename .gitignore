@@ -21,6 +21,8 @@
 # Ignore environment files in the server folder
 server/.env
 
+.env
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

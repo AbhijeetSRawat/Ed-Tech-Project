@@ -96,7 +96,7 @@ exports.getAllUserDetails = async(req,res)=>{
     catch(error){
         return res.status(500).json({
             success:false,
-            message:error.mess,age
+            message:error.message
         })
     }
 }
