@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Link } from 'react-router-dom'
 import { FaArrowRight } from "react-icons/fa6";
 import HighlightedText from '../components/core/homepage/HighlightedText';
@@ -14,8 +14,13 @@ import KnowYourProgress from '../assets/Images/Know_your_progress.png'
 import CompareWithOthers from '../assets/Images/Compare_with_others.png'
 import PlanYourLessons from '../assets/Images/Plan_your_lessons.png'
 import Instructor from '../assets/Images/Instructor.png'
+import Footer from '../components/common/Footer';
+
 
 export default function Homepage() {
+
+    
+
   return (
     <div className="bg-[#000814]  flex flex-col items-center overflow-x-hidden">
         {/* section-1 */}
@@ -179,7 +184,7 @@ export default function Homepage() {
         
         {/* section 5 */}
 
-        <div className='h-[929px] w-full lg:relative'>
+        <div className='h-[800px] w-full lg:relative'>
 
             <div className='lg:flex lg:flex-row-reverse lg:justify-evenly lg:m-12 lg:gap-5'>
                 <div className='lg:flex lg:flex-col lg:justify-center '>
@@ -204,7 +209,7 @@ export default function Homepage() {
         {/* footer */}
 
         <div>
-            
+           <Footer/> 
         </div>
     </div>
   )

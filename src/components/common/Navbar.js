@@ -1,18 +1,23 @@
 import logo from "../../assets/Logo/Logo-Full-Light.png"
 import { IoIosSearch } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
-import { Link, matchPath, useLocation } from "react-router-dom";
+import { Link, matchPath, useLocation, useNavigate } from "react-router-dom";
 import {NavbarLinks} from "../../data/navbar-links"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileDropDown from "../core/auth/ProfileDropDown";
 import { useEffect, useState } from "react";
 import { apiConnector } from "../../services/apiConnector";
 import { categories } from "../../services/apis";
+import { logout } from "../../services/operations/authAPI";
 
 
 const Navbar = () => {
 
     const location =useLocation();
+
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const matchRoute = (route)=>{
         return matchPath({path:route},location.pathname);
@@ -36,6 +41,9 @@ const Navbar = () => {
         }
     }
 
+    const clicklogout=()=>{
+        dispatch(logout(navigate));
+    }
 
     useEffect(()=>{
         fetchSubLinks();
@@ -152,7 +160,7 @@ const Navbar = () => {
                         )
                     }
                     {
-                        token && <ProfileDropDown/>
+                        token && <button onClick={clicklogout} className="text-richblack-50 border w-[65px] md:w-[80px] h-[40px] bg-richblack-800 shadow-sm shadow-white border-richblack-500 rounded-md ">LogOut</button>
                     }
                 </div>
             </div>

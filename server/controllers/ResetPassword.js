@@ -8,6 +8,8 @@ exports.resetPasswordToken = async (req,res)=>{
         //data fetch from the request
         const {email}=req.body;
 
+   
+
         //db call for the user
         const user=await User.findOne({email:email});
 
